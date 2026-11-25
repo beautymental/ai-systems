@@ -1,0 +1,2 @@
+# Запуск
+Python 3.10+, бажано GPU T4. З кореня mkr1: `pip install -r solution/requirements.txt`, `python solution/app.py`. Відкрити локальну адресу з консолі. Перший запуск завантажує модель з Hugging Face. Для Colab розпакувати ZIP у /content, виконати `%cd /content/mkr1`, `!pip -q install -r solution/requirements.txt`, потім `import sys; sys.path.insert(0,'/content/mkr1/solution'); from app import build; build().launch(share=True)`. Публічне посилання Colab не використовувати для конфіденційних даних.

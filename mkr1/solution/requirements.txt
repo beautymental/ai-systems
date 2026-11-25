@@ -1,0 +1,5 @@
+gradio>=5,<7
+transformers>=4.48,<5
+accelerate>=1.2
+pypdf>=5
+torch>=2.2
