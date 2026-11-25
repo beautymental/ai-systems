@@ -1,0 +1,372 @@
+﻿model,number,prompt,answer,seconds,error
+qwen3:4b,1,Поясни різницю між GET і POST у PHP.,"Okay, I need to explain the difference between GET and POST in PHP. Let me think.
+
+First, I remember that both are HTTP methods used in web requests. In PHP, when you handle forms, you can use either GET or POST.
+
+GET is for retrieving data. It appends the data to the URL as query parameters. So, the data is visible in the URL. It's safe for small amounts of data, like search queries. But if you have sensitive info, it's not secure because it's in the URL and can be logged.
+
+POST is for sending data to the server. The data is sent in the request body, so it's not visible in the URL. This is better for sensitive data, like passwords. Also, POST can handle larger data amounts.
+
+In PHP, you use $_GET and $_POST superglobals to access the data. For example, with GET, you do $_GET['name'], and with POST, $_POST['name'].
+
+Wait, but I should mention that GET has a limit on the data size (like 2000 characters), while POST can handle more. Also, GET is cached by browsers, which might be a problem for some applications.
+
+Let me check if there's anything else. Oh, security: using POST is more secure because the data isn't in the URL. Also, GET is used for actions that don't change the server state, like fetching data, while POST is for submitting data that changes the server state.
+
+Examples: A search form uses GET, a login form uses POST.
+
+Wait, the user asked for PHP specifically. So in PHP code, when you have a form with method=""get"" vs method=""post"".
+
+I should structure the",30.652,
+qwen3:4b,2,Напиши функцію PHP для перевірки email.,"Okay, I need to write a PHP function to check an email address. Let me think about how to approach this.
+
+First, I remember that in PHP, there's a filter_var function that can validate emails. But maybe the user wants a custom function? Wait, the problem says ""перевірки email"", so checking the email. The standard way is to use filter_var with FILTER_VALIDATE_EMAIL.
+
+Wait, but sometimes people want to check if the email is in the correct format. Let me recall: the PHP filter_var function with FILTER_VALIDATE_EMAIL checks if the string is a valid email address according to the RFC 5322 standard.
+
+So the function would be something like:
+
+function isValidEmail($email) {
+    return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
+}
+
+But wait, maybe the user wants to handle cases where the email might have spaces or other invalid characters. But filter_var should handle that.
+
+Let me test with an example. For example, ""test@example.com"" should return true. If the email is ""invalid-email"", it should return false.
+
+Wait, but the problem says ""з прикладом за потреби"" – so if needed, provide an example. So the function is straightforward.
+
+Wait, but maybe the user wants to check if the email is in the correct format without using the built-in filter? But the question says ""функцію PHP для перевірки email"", so probably using the standard PHP functions is acceptable.
+
+So the answer would be a function that uses filter_var. Let me check the PHP docs. Yes, FILTER_VALIDATE_EMAIL is a filter that validates email addresses.
+
+So the code would be:
+
+function isValidEmail($email) {
+",22.382,
+qwen3:4b,3,"Поясни, що таке SQL Injection та як від неї захиститися.","Okay, the user wants me to explain what SQL Injection is and how to protect against it. Let me think.
+
+First, SQL Injection is when an attacker inserts malicious SQL statements into a query. They do this by manipulating input fields, like a form. The server then executes the malicious code, which can steal data, delete databases, etc.
+
+I should give a simple example. Maybe something like a login form where the username is input. If the input is not properly checked, an attacker could enter ' OR '1'='1 -- to bypass authentication.
+
+For protection, the main methods are using parameterized queries (preparedStatement), input validation, escaping special characters, and using frameworks that handle it. Also, the principle of least privilege for database access.
+
+Wait, the user wants it in Ukrainian. Let me make sure the terms are correct. ""SQL Injection"" is the same in Ukrainian. Parameterized queries might be ""параметризовані запити"" or ""запити з параметрами"".
+
+I need to structure it clearly. Start with definition, then example, then protection methods.
+
+Check if there's a common Ukrainian term for ""parameterized queries"". Maybe ""параметризовані запити"" is correct.
+
+Also, mention using ORM frameworks like Django, Flask, which handle it automatically.
+
+Don't want to be too technical. Keep it simple.
+
+Let me draft:
+
+SQL Injection — це атака, коли відкривається SQL-запит через неправильну обробку вводу користувача. Наприклад, якщо в логін-формі ввести `admin'",22.311,
+qwen3:4b,4,Напиши SQL-запит для вибірки користувачів старше 18 років із таблиці users з полем age.,"Okay, the user wants an SQL query to select users older than 18 from the users table with an age field. Let me think.
+
+First, I need to recall basic SQL syntax. The SELECT statement is used to retrieve data. The table is users, and the column is age. They want users where age > 18.
+
+So the basic structure would be SELECT * FROM users WHERE age > 1. Wait, no, 18. So WHERE age > 18.
+
+Wait, but in some databases, age might be stored as a string, but the user specified it's a field called age, so probably an integer. So the query should be straightforward.
+
+Let me check if there's any edge case. Like, does the user want specific columns or all columns? The question says ""користувачів"", so probably all columns, so using *.
+
+So the query is: SELECT * FROM users WHERE age > 18;
+
+But maybe in some contexts, they use different table names or column names, but the user specified the table is users and the field is age.
+
+Wait, the user wrote ""з таблиці users з полем age"" so yes, table users, column age.
+
+So the correct SQL is SELECT * FROM users WHERE age > 18;
+
+I should write it in Ukrainian, but the query itself is in English. The user asked to respond in Ukrainian, but the SQL is standard.
+
+Wait, the user says: ""Відповідай українською, стисло, точно, з прикладом за потреби.""
+
+So the answer should be in Ukrainian, short, precise, with example if needed.
+
+So the response",22.768,
+qwen3:4b,5,Поясни різницю між include та require у PHP.,"Okay, I need to explain the difference between include and require in PHP. Let me think.
+
+First, both are used to include files in PHP. But they have different behaviors when the file isn't found.
+
+I remember that include is a bit more lenient. If the file isn't found, it gives a warning but continues executing the script. Whereas require throws a fatal error if the file isn't found, so the script stops immediately.
+
+Wait, let me confirm. Yes, in PHP, include() will generate a warning if the file doesn't exist, but the script continues. Require() will generate a fatal error if the file isn't found, so the script stops.
+
+So the main difference is the error handling: include gives a warning, require gives a fatal error.
+
+Also, maybe mention the error levels? Like, include is a warning (E_WARNING), require is a fatal error (E_ERROR).
+
+Let me check if there's anything else. Oh, right, sometimes people use include_once and require_once to prevent multiple inclusions. But the question is about include vs require, so maybe that's extra.
+
+The user wants a concise explanation in Ukrainian. So I should write it in Ukrainian, short, precise.
+
+Let me translate the key points.
+
+Різниця між include та require:
+
+- include: якщо файл не знайдено, видає **попередження** (warning), але скрипт продовжує виконуватися.
+- require: якщо файл не знайдено, видає **фатальна помилка** (fatal error), тому скрипт зупиняє",22.475,
+qwen3:4b,6,Напиши функцію JavaScript для перевірки парного числа.,"Okay, I need to write a JavaScript function to check if a number is even. Let me think.
+
+First, in JavaScript, even numbers are divisible by 2 without a remainder. So the basic idea is to take the number modulo 2. If the remainder is 0, it's even.
+
+Wait, modulo operation in JS is %. So for example, 4 % 2 is 0, which is even. 5 % 2 is 1, which is odd.
+
+So the function should take a number as input and return true if it's even, false otherwise.
+
+Let me write that. The function could be called isEven.
+
+Wait, but the user said ""перевірки парного числа"" which translates to checking even number. So the function should return a boolean.
+
+Let me test with some examples. For 0, 0 % 2 is 0, so 0 is even. That's correct.
+
+So the code would be something like:
+
+function isEven(num) {
+  return num % 2 === 0;
+}
+
+Yes, that seems right. Let me check edge cases. Negative numbers? Like -4. -4 % 2 in JS is 0, so it's even. So the function works for negatives too.
+
+Wait, in some languages, modulo for negatives can be tricky, but in JavaScript, the % operator returns a result with the same sign as the dividend. But for even/odd checks, since even numbers are divisible by 2, negative even numbers will still have remainder 0. For example, -4 % 2 is 0, so it's even. So the function works.
+
+So the function is straightforward.
+
+I think that",22.578,
+qwen3:4b,7,Поясни принцип MVC.,"Okay, I need to explain the MVC principle in Ukrainian. Let me think.
+
+First, MVC stands for Model-View-Controller. It's a design pattern used in software development. The main idea is to separate the application into three components.
+
+Model: Handles data and business logic. Like the data structure and rules.
+
+View: Displays the data to the user. It's the UI part.
+
+Controller: Acts as the middleman. It processes user input, updates the model, and selects the view to render.
+
+I should make sure to use Ukrainian terms. Let me check the translations.
+
+In Ukrainian, Model is ""Модель"", View is ""Відображення"" or ""Відображення"", Controller is ""Контролер"".
+
+Wait, maybe ""Контролер"" is the standard term for Controller in Ukrainian tech context.
+
+Let me structure the explanation.
+
+Start with a short definition: MVC - це паттерн проектування, який розподіляє програму на три компоненти: Модель, Відображення та Контролер.
+
+Then explain each part with their roles.
+
+Model: Зберігає дані та логіку бізнес-процесів.
+
+View: Відображає інформацію користувачеві (UI).
+
+Controller: Обробляє вхідні дані користувача, оновлює Модель та вибирає Відображення.
+
+Give an example. Maybe a simple web app where a user enters a name, the controller",22.543,
+qwen3:4b,8,Поясни різницю між cookies та sessions.,"Okay, I need to explain the difference between cookies and sessions in Ukrainian. Let me think.
+
+First, cookies are small pieces of data stored on the user's device. They're sent back to the server with each request. Sessions are stored on the server, right? So when a user logs in, the server creates a session ID and sends it to the client, which then stores it in a cookie. The server uses that session ID to track the user's session.
+
+Wait, but sometimes sessions can be stored in cookies too, like session cookies. Hmm, maybe I should clarify that sessions are server-side, but the session ID is often stored in a cookie.
+
+Let me structure this.
+
+Cookies: stored on the client's browser, contain data like session ID, user preferences. They're sent with each HTTP request.
+
+Sessions: server-side storage of user session data. The server generates a session ID (usually stored in a cookie) and uses it to retrieve session data.
+
+So the main difference is where they're stored (client vs server) and what they're used for.
+
+Example: When you log in, the server creates a session, sends a session ID via a cookie. Next requests include that cookie, server checks the session ID to get session data.
+
+Wait, but in some cases, sessions can be stored in the server's memory or a database. The key point is that cookies are client-side, sessions are server-side.
+
+Let me check if I'm mixing up terms. In web development, sessions are server-side, and cookies are client-side. The session ID is typically stored in a cookie, but the session data itself is on the server.
+
+So the answer should be:
+
+Cookies - зберігаються на кор",22.394,
+qwen3:4b,9,Як створити нову гілку в Git?,"Okay, the user is asking how to create a new branch in Git. Let me think about the correct steps.
+
+First, I remember that in Git, you can create a new branch using the 'git branch' command. The basic syntax is 'git branch <branch-name>'. But wait, sometimes people might want to switch to the new branch immediately, so maybe they need to use 'git checkout' as well.
+
+Wait, the user might not know the difference between creating and switching. Let me check. The standard way is to create the branch and then switch to it. So the command would be 'git branch new-branch-name' followed by 'git checkout new-branch-name'. Alternatively, you can do it in one step with 'git checkout -b new-branch-name' which creates and switches to the branch.
+
+I should mention both methods. Let me make sure the commands are correct. For example, if the user is on the main branch, creating a new branch without switching would require two commands. But the -b flag is for creating and switching.
+
+Also, the user might be using Windows or macOS, but the commands are the same. The example should be straightforward.
+
+Let me write the answer in Ukrainian. The user wants a concise, accurate response with an example if needed.
+
+So the answer would be: Для створення нової гілки в Git використовуйте команду `git branch <назва_гілки>`, або створіть і перейдіть до неї одночасно через `git checkout -b <назва_гілки>`. Наприклад: `git checkout -b",22.403,
+qwen3:4b,10,Знайди синтаксичну помилку в PHP-коді: echo $name,"Okay, let's see. The user wants me to find a syntax error in the PHP code: echo $name.
+
+Hmm, first I need to think about common PHP syntax errors. The code given is just ""echo $name"". Wait, in PHP, when you use echo, you have to make sure that the variable is properly defined. But the error here is a syntax error, not a runtime error.
+
+Wait, syntax errors are things like missing semicolon, incorrect brackets, etc. Let me check. The code is written as echo $name. In PHP, the echo statement is followed by a semicolon to end the statement. Oh! Right, in PHP, every statement needs a semicolon at the end. So if the code is written without a semicolon, that's a syntax error.
+
+Wait, the user wrote ""echo $name"" without a semicolon. So the correct syntax should be ""echo $name;"". So the missing semicolon is the syntax error here.
+
+Let me confirm. For example, in PHP, if you have a statement like echo $name, you need to end it with a semicolon. If you omit the semicolon, the parser will throw a syntax error because it expects a semicolon to terminate the statement.
+
+Yes, so the error here is the missing semicolon after the echo statement. So the correct code should have a semicolon. The user's code is missing that semicolon, hence the syntax error.
+
+Another thing to check: maybe the variable $name isn't defined, but that's a runtime error, not a syntax error. The question specifies a syntax error, so it's the semicolon.
+
+So the answer is that the missing semicolon is the syntax error",22.891,
+qwen3:1.7b,1,Поясни різницю між GET і POST у PHP.,"GET і POST — це два методи передачі даних у HTTP-запиті, і вони відрізняються відповідно до того, як даними відправляються і як вони використовуються.
+
+### Різниця:
+
+- **GET**:
+  - Даними відправляються **відкрито** (під час відкриття сторінки).
+  - Даними можна **заглянути в URL**.
+  - Недостатність: даними можна **заглянути в URL**, що може призвести до **загрози відкриття даних**.
+  - Приклад: `http://example.com?name=John&age=25`
+
+- **POST**:
+  - Даними відправляються **закрито** (під час виконання запиту).
+  - Даними не можна **заглянути в URL**.
+  - Більш **безпечно** для передачі даних, особливо якщо вони є **важливими**.
+  - Приклад: `http://example.com.php?username=John&age=25` (це GET)  
+    `http://example.com.php` (це POST, даними відправляються за допомогою `POST",12.786,
+qwen3:1.7b,2,Напиши функцію PHP для перевірки email.,"Ось проста функція PHP для перевірки електронної пошти:
+
+```php
+function isValidEmail($email) {
+    $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+    return $email !== false;
+}
+```
+
+**Приклад використання:**
+
+```php
+$email = ""user@example.com"";
+if (isValidEmail($email)) {
+    echo ""Email is valid."";
+} else {
+    echo ""Email is invalid."";
+}
+```
+
+Ця функція використовує `filter_var` з параметром `FILTER_VALIDATE_EMAIL`, який перевіряє, чи є введене значення валідним електронним адресою.",3.974,
+qwen3:1.7b,3,"Поясни, що таке SQL Injection та як від неї захиститися.","SQL Injection — це метод засvідання даних з бази даних через відкриту відповідь. Він відбувається, коли користувачеві дозволено вводити відкриті засvідання в форму, яка використовується для виконання SQL-запитів. Це дозволяє вставити відкриті засvідання, які можуть викликати непредвидені запити до бази даних.
+
+**Як захиститися від SQL Injection:**
+
+1. **Використовуйте параметризований SQL (prepared statements).**  
+   Параметризовані запити відключають відкриті засvідання, оскільки система не виконує SQL-код, а просто виконує параметри.
+
+2. **Використовуйте ORM (Object-Relational Mapping).**  
+   ORM-об'єкти автоматично відключають відкриті засvідання, оскільки вони виконують запити з параметрами.
+
+3. **Підтримуйте віртуальні відмови (input validation).**  
+   Підтримуй",8.476,
+qwen3:1.7b,4,Напиши SQL-запит для вибірки користувачів старше 18 років із таблиці users з полем age.,SELECT * FROM users WHERE age > 18;,0.408,
+qwen3:1.7b,5,Поясни різницю між include та require у PHP.,"У PHP `include` і `require` — це функції для виклику файлів, але вони мають різний зміст:
+
+- **`include`** — викликає файл, але **заблоковує** його виконання, якщо він не існує або неможливо відкрити.  
+- **`require`** — також викликає файл, але **заблоковує** його виконання, якщо він не існує або неможливо відкрити.  
+- **Різниця** — **`include`** викликає файл, але **не виконує** його, якщо він не існує.  
+  - **`require`** викликає файл і **виконує** його, якщо він не існує.
+
+**Приклад:**
+
+```php
+include 'file1.php'; // Якщо файл не існує, виконання зупиняється
+require 'file2.php'; // Якщо файл не існує, виконання зупиняється
+```
+
+**Висновок:**  
+- `include` — викликає файл, але **не виконує**",8.461,
+qwen3:1.7b,6,Напиши функцію JavaScript для перевірки парного числа.,"Ось функція JavaScript для перевірки, чи є число парним:
+
+```javascript
+function isEven(number) {
+  return number % 2 === 0;
+}
+```
+
+**Приклад використання:**
+
+```javascript
+console.log(isEven(4)); // true
+console.log(isEven(5)); // false
+```
+
+Якщо потрібно, можна додати відповідь з поясненням.",2.769,
+qwen3:1.7b,7,Поясни принцип MVC.,"Модель-Вікенс-Відображення (MVC) — це архітектурний принцип, який діляє програму на три основні компоненти:
+
+1. **Модель (Model)** — зберігає даних і логіку програми. Вона відповідає за збереження, зміни і відображення даних.
+
+2. **Вікенс (View)** — відображає дані з моделі користувачу. Він відповідає за з'єднання зі змінами в моделі і відображенням на екрані.
+
+3. **Відображення (Controller)** — виконує логіку, яка з'єднує модель і вікенс. Він відповідає за обробку запитів користувача, зміну даних в моделі і зміну вікенса.
+
+**Приклад:**  
+Якщо користувач вводить число у формі, то:
+
+- **Модель** зберігає це число.
+- **Вікенс** відображає його на екрані.
+- **Відображення** обробляє ввод, змінює модель і змінює",8.471,
+qwen3:1.7b,8,Поясни різницю між cookies та sessions.,"Кошики (cookies) і сесії (sessions) — це способи зберігання даних у браузері, але вони різняться:
+
+- **Cookies** — це небезпечні даних, які зберігаються у файлі браузера. Вони можуть містити інформацію про користувача (наприклад, логін, пароль, натиснуті кнопки).  
+- **Сесії** — це інформація, яка зберігається на сервері. Вона використовується для зберігання даних, які не можна зберігати у cookies (наприклад, логін, пароль, інформація про користувача).
+
+**Приклад:**  
+Якщо користувач відмовляється від запитання, він може зберігати це у cookies, але якщо він відмовляється знову, сервер знову створює сесію.",7.256,
+qwen3:1.7b,9,Як створити нову гілку в Git?,"Щоб створити нову гілку в Git, виконуйте такі кроки:
+
+1. **Відкрити відповідну філософию** (наприклад, `main` або `develop`):
+   ```bash
+   git checkout main
+   ```
+
+2. **Створіть нову гілку**:
+   ```bash
+   git checkout -b feature/my-feature
+   ```
+
+3. **Відкріть файл або створіть новий** і зробіть зміни.
+
+4. **Збережіть зміни**:
+   ```bash
+   git add .
+   ```
+
+5. **Запишіть зміни в Git**:
+   ```bash
+   git commit -m ""Опис змін""
+   ```
+
+6. **Після виконання робіт, перейдіть до нової гілки, щоб зробити push**:
+   ```bash
+   git push -u origin feature/my-feature
+   ```
+
+**Приклад:**
+```bash
+git checkout main
+git checkout -b feature/add-api
+git add app/controllers/api_controller.rb
+git commit -m ""Додано API-контролер""
+git push -u origin feature/add-api
+```",7.566,
+qwen3:1.7b,10,Знайди синтаксичну помилку в PHP-коді: echo $name,"Помилка: **division by zero**.
+
+Приклад:
+```php
+<?php
+$name = 0;
+echo $name / 0; // Помилка: Division by zero
+?>
+```
+
+Пояснення: Висловлення `echo $name / 0` виконується з помилкою, оскільки ділення на нуль не визначене.",2.41,

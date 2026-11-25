@@ -1,0 +1,5 @@
+label,model,concurrency,requests,errors,ttft_p50_s,ttft_p95_s,tokens_per_s_per_user_p50,throughput_tokens_per_s,reasoning
+before,qwen3:4b,1,4,0,2.461,2.696,15.1,11.0,False
+before,qwen3:4b,2,4,0,7.064,9.005,15.2,13.7,False
+after,qwen3:1.7b,1,4,0,2.134,2.159,42.3,18.7,False
+after,qwen3:1.7b,2,4,0,3.052,4.46,41.5,27.1,False
